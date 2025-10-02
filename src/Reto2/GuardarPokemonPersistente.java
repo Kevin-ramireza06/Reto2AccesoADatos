@@ -1,16 +1,10 @@
 package Reto2;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.persistence.FilePersistenceStrategy;
 import com.thoughtworks.xstream.persistence.PersistenceStrategy;
 import com.thoughtworks.xstream.persistence.XmlArrayList;
-import com.thoughtworks.xstream.security.AnyTypePermission;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Iterator;
 
 public class GuardarPokemonPersistente {
 
@@ -32,33 +26,7 @@ public class GuardarPokemonPersistente {
         listaPokemones.add(gengar);
 
         Pokemon error = new Pokemon("Lucario", "Aura", 50, "Esfera Aural, Puño Meteoro, Danza Espada, Velocidad Extrema", 448);
-        ;
-
-        /*
-        convertirXML.addPermission(AnyTypePermission.ANY);
-
-        //Pokemon pikachu = new Pokemon("Pikachu", "Sparky", 25, "Impactrueno, Placaje, Ataque Rápido, Rayo", 25);
-
-        convertirXML.alias("Pokemon" , Pokemon.class);
-        convertirXML.aliasField("NumeroPokedex" , Pokemon.class , "numPokedex");
-        convertirXML.aliasField("Level" , Pokemon.class , "nivel");
-
-
-
-
-
-        //-----------Guardar XML en fichero-----------
-
-        try{
-            File archivo = new File("PokemonesPersistentes");
-            FileWriter escritor = new FileWriter(archivo);
-            //BufferedWriter escritorOptimo = new BufferedWriter(escritor);
-
-            escritor.write(xml);
-            escritor.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-              */
+        listaPokemones.add(error);
+        /*Preguntar*/
     }
 }
