@@ -34,7 +34,6 @@ public class PruebaPokemonJettison {
         for (Pokemon p : listaRecuperada) {
             System.out.print(p);
 
-
             /*
              * La clase Jettison funciona muy bien, pero a veces usa métodos o una lógica que
              * parece extraña pero es muy util si ya estás usando XStream para XML y de repente
