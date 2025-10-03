@@ -37,6 +37,14 @@ public class RecuperarPokemonPersistente {
             * el objeto en java y despues lo guardabamos en un xml, en cambio aqui los creamos en una lista de
             * xstream, y este mismo crea un xml por objeto, en este caso yo creo que un metodo es mas comodo
             * que el otro dependiendo del contexto*/
+
+            /*
+            * Respecto al punto 4, nos percatamos que de los ejercicios del archivo, son pocos los cambios interesantes
+            * que podemos hacer con respecto a lo que tenemos hecho, ya que lo que hay en los ejercicios son lo que
+            * hemos hecho pero con distintas clases, lo unico interesante que habia de los ejercicios son que el metodo
+            * "toXML()" puede recibir por un objeto de la clase ObjectOutputStream, y el metodo "fromXML" puede
+            *recibir un objeto de la clase "InputStream"
+            */
         }
     }
 }
