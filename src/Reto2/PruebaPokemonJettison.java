@@ -33,6 +33,14 @@ public class PruebaPokemonJettison {
         System.out.println("\nPokemons recuperados:");
         for (Pokemon p : listaRecuperada) {
             System.out.print(p);
+
+            /*
+             * La clase Jettison funciona muy bien, pero a veces usa métodos o una lógica que
+             * parece extraña pero es muy util si ya estás usando XStream para XML y de repente
+             * necesitas manejar JSON, en comparacion con "Gson" es mejor usar XStream/Jettison
+             * si queremos trabajar con ambos al tiempo, pero si queremos trabajar con JSON puro
+             * es mejor usar GSON
+             */
         }
 
         /*
