@@ -34,6 +34,13 @@ public class PruebaPokemonJettison {
         for (Pokemon p : listaRecuperada) {
             System.out.print(p);
         }
+
+        /*
+         * Al usar JettisonMappedXmlDriver ganamos en compatibilidad entre XML y JSON, y es muy util para trabajar con ambos sin
+         * necesidadd de modificar su logica, aunque necesitemos jettison.jar extra. Al mentener la logica de XML,
+         * JSON es menos bonito. Lo he preferido porque me ha resultado más interesante que el JsonHierethicalStreamDriver,
+         * que es más directo y que en caso de necesitar un JSON y un XML muy parecidos no es lo más óptimo
+        */
     }
 }
 
