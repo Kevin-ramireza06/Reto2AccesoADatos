@@ -15,7 +15,7 @@ public class ContadorBuggy {
 	
 	public static void main(String[] args) {
 		try (Connection con =
-			DriverManager.getConnection("jdbc:mysql://localhost/contadores",
+			DriverManager.getConnection("jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db",
 					"contadores",
 					"987654321");
 		)

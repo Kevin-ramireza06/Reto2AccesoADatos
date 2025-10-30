@@ -13,9 +13,9 @@ public class ContadorEnBDUpdatable {
 		final String claveContador = "contador1";
 		final String sqlConsulta = "SELECT nombre,cuenta FROM contadores WHERE nombre=?";
 		 try{
-			 Class.forName("org.mariadb.jdbc.Driver");  
+			 Class.forName("org.sqlite.JDBC");
 			 Connection connection = DriverManager.getConnection(  
-	                "jdbc:mariadb://localhost:3306/contadores", "contadores", "987654321");  
+	                "jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db", "contadores", "987654321");
 			 //Statement consulta = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 			 PreparedStatement consulta = connection.prepareStatement(sqlConsulta,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			 consulta.setString(1, claveContador);
@@ -40,7 +40,7 @@ public class ContadorEnBDUpdatable {
 			 
 		 } // try
 		 catch (SQLException e) {
-			 System.out.println(e.getMessage());
+			 e.printStackTrace();
 		 }
 		 catch (Exception e) {
 			 e.printStackTrace();

@@ -15,8 +15,7 @@ public class ContadorEnBD {
 		final String claveContador = "contador1";
 
 		try {
-			Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/contadores",
-					"contadores", "987654321");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db");
 			PreparedStatement consulta = connection.prepareStatement(sqlConsulta);
 			PreparedStatement actualización = connection.prepareStatement(sqlActualización);
 			int cuenta = 0;
@@ -39,7 +38,7 @@ public class ContadorEnBD {
 
 		} // try
 		catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

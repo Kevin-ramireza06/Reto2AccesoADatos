@@ -1,4 +1,4 @@
-package Reto2;
+/*package Reto2;
 
 import com.google.gson.Gson;
 
@@ -20,7 +20,7 @@ public class ConvertirXmlAJSON {
 
     public static void main(String[] args) {
 
-        /*Aqui estamos usando las librerias gson y org json*/
+        /*Aqui estamos usando las librerias gson y org json
 
         try{
             String json = new String(Files.readAllBytes(Paths.get("MOCK_DATA.json")));
@@ -41,4 +41,4 @@ public class ConvertirXmlAJSON {
             e.printStackTrace();
         }
     }
-}
+}*/
