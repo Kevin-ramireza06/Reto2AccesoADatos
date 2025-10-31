@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class ContadorSqlTransaccional {
 
-    //No furula
+    //No funciona
 	public static void main(String[] args) throws ClassNotFoundException {
 		// Prueba de concepto de transacción con bloqueo de fila para lectura
 		// Sería más fácil en el propio sql poner un set cuenta=cuenta+1 pero ilustramos
