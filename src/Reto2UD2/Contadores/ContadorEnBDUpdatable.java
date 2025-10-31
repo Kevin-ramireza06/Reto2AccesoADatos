@@ -1,50 +1,55 @@
 package Reto2UD2.Contadores;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ContadorEnBDUpdatable {
+    //Funciona
+    public static void main(String[] args) {
+        final String claveContador = "contador1";
+        final String sqlSelect = "SELECT cuenta FROM contadores WHERE nombre = ?";
+        final String sqlUpdate = "UPDATE contadores SET cuenta = ? WHERE nombre = ?";
+        final String sqlInsert = "INSERT INTO contadores(nombre, cuenta) VALUES(?, ?)";
 
-	public static void main(String[] args) {
-		final String claveContador = "contador1";
-		final String sqlConsulta = "SELECT nombre,cuenta FROM contadores WHERE nombre=?";
-		 try{
-			 Class.forName("org.sqlite.JDBC");
-			 Connection connection = DriverManager.getConnection(  
-	                "jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db", "contadores", "987654321");
-			 //Statement consulta = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE); 
-			 PreparedStatement consulta = connection.prepareStatement(sqlConsulta,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-			 consulta.setString(1, claveContador);
-			 int cuenta = 0;
-			 
-			 for (int i=0; i<1000;i++) {
-				 //ResultSet res = consulta.executeQuery("SELECT nombre,cuenta FROM contador WHERE nombre='" + claveContador + "';");
-				 //ResultSet res = consulta.executeQuery();
-				 if (consulta.execute()) {  // por ver para qué sirve esto del boolean devuelvo por el execute ¿?
-					 ResultSet res = consulta.getResultSet();
-					 if (res.next()) {
-						 cuenta = res.getInt(2)+1;
-						 res.updateInt(2, cuenta);
-						 res.updateRow();
-					 }
-					 //else break;
-					 else System.out.println("Error");
-				 }
-				 //if (i%10==0) System.out.println(i/10 + "%");
-			 } //
-			 System.out.println("Valor final: " + cuenta);
-			 
-		 } // try
-		 catch (SQLException e) {
-			 e.printStackTrace();
-		 }
-		 catch (Exception e) {
-			 e.printStackTrace();
-		 }
-	} // main
+        try {
+            // Cargar el driver (opcional en Java 11+, pero útil por compatibilidad)
+            Class.forName("org.sqlite.JDBC");
 
-} // class
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db"
+            );
+
+            int cuenta = 0;
+
+            for (int i = 0; i < 1000; i++) {
+                try (PreparedStatement select = connection.prepareStatement(sqlSelect)) {
+                    select.setString(1, claveContador);
+                    try (ResultSet rs = select.executeQuery()) {
+                        if (rs.next()) {
+                            cuenta = rs.getInt("cuenta") + 1;
+                            try (PreparedStatement update = connection.prepareStatement(sqlUpdate)) {
+                                update.setInt(1, cuenta);
+                                update.setString(2, claveContador);
+                                update.executeUpdate();
+                            }
+                        } else {
+                            // Si no existe el contador, se inserta con valor inicial 1
+                            cuenta = 1;
+                            try (PreparedStatement insert = connection.prepareStatement(sqlInsert)) {
+                                insert.setString(1, claveContador);
+                                insert.setInt(2, cuenta);
+                                insert.executeUpdate();
+                            }
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Valor final del contador '" + claveContador + "': " + cuenta);
+
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

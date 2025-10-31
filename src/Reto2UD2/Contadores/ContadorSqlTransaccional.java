@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 public class ContadorSqlTransaccional {
 
+    //No furula
 	public static void main(String[] args) throws ClassNotFoundException {
 		// Prueba de concepto de transacción con bloqueo de fila para lectura
 		// Sería más fácil en el propio sql poner un set cuenta=cuenta+1 pero ilustramos
@@ -16,10 +17,10 @@ public class ContadorSqlTransaccional {
 		String sqlConsulta = "select nombre,cuenta from contadores where nombre='contador1' for update;";
 		String sqlActualización = "update contadores set cuenta=? where nombre='contador1';";
 		
-		Class.forName("org.mariadb.jdbc.Driver");
+		Class.forName("org.sqlite.JDBC");
 		
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mariadb://localhost:3306/contadores?allowPublicKeyRetrieval=true", "contadores", "987654321"))
+				"jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db"))
 		{
 			PreparedStatement consulta = connection.prepareStatement(sqlConsulta);
 			PreparedStatement actualización = connection.prepareStatement(sqlActualización);

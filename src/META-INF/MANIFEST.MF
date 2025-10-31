@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: Reto2UD2.ContadoresH2.ContadorBuggyH2
+

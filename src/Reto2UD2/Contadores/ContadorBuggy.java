@@ -12,14 +12,13 @@ public class ContadorBuggy {
 			"select cuenta from contadores where nombre='contador1'";
 	static final String SQL_ACTUALIZA=
 			"update contadores set cuenta=? where nombre='contador1'";
-	
+	//FUNCIONA
 	public static void main(String[] args) {
 		try (Connection con =
-			DriverManager.getConnection("jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db",
-					"contadores",
-					"987654321");
+			DriverManager.getConnection("jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db");
 		)
 		{
+            Class.forName("org.sqlite.JDBC");
 			int cuenta = 0;
 			for (int i=1; i<=1000; i++) {
 				Statement consulta = con.createStatement();
@@ -34,7 +33,10 @@ public class ContadorBuggy {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		
 
 	}

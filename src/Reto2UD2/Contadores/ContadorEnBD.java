@@ -13,7 +13,7 @@ public class ContadorEnBD {
 		final String sqlConsulta = "SELECT cuenta FROM contadores WHERE nombre=?;";
 		final String sqlActualización = "UPDATE contadores SET cuenta=? WHERE nombre=?;";
 		final String claveContador = "contador1";
-
+        //fUNCIONA
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:sqlite:/home/alumno/IdeaProjects/Reto2AccesoADatos/contadores.db");
 			PreparedStatement consulta = connection.prepareStatement(sqlConsulta);
@@ -27,7 +27,7 @@ public class ContadorEnBD {
 				if (res.next()) {
 					cuenta = res.getInt(1) + 1;
 					actualización.setInt(1, cuenta);
-					actualización.executeQuery();
+					actualización.executeUpdate();
 				}
 				// else break;
 				else
